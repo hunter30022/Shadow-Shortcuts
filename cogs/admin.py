@@ -31,7 +31,7 @@ class Admin(commands.Cog):
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
             return
         try:
-            self.bot.load_extension(module)
+            self.bot.load_extension('cogs.' + str(module))
         except Exception as e:
             await ctx.send('```py\n{traceback}\n```'.format(traceback=traceback.format_exc()))
         else:
@@ -44,7 +44,7 @@ class Admin(commands.Cog):
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
             return
         try:
-            self.bot.unload_extension(module)
+            self.bot.unload_extension('cogs.' + str(module))
         except Exception as e:
             await ctx.send('```py\n{traceback}\n```'.format(traceback=traceback.format_exc()))
         else:
@@ -57,8 +57,8 @@ class Admin(commands.Cog):
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
             return
         try:
-            self.bot.unload_extension(module)
-            self.bot.load_extension(module)
+            self.bot.unload_extension('cogs.' + str(module))
+            self.bot.load_extension('cogs.' + str(module))
         except Exception as e:
             await ctx.send('```py\n{traceback}\n```'.format(traceback=traceback.format_exc()))
         else:
